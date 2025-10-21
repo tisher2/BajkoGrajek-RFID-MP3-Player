@@ -1,0 +1,136 @@
+# Wymagane biblioteki dla BajkoGrajek RFID MP3 Player
+
+## Biblioteki do zainstalowania przez Arduino Library Manager:
+
+1. ESP8266Audio
+   - Autor: Earle F. Philhower, III
+   - GitHub: https://github.com/earlephilhower/ESP8266Audio
+   - Opis: Dekodowanie i odtwarzanie audio (MP3, WAV, AAC, itp.)
+   - Instalacja: Library Manager → "ESP8266Audio"
+
+2. Adafruit PN532
+   - Autor: Adafruit
+   - GitHub: https://github.com/adafruit/Adafruit-PN532
+   - Opis: Obsługa czytnika RFID/NFC PN532
+   - Instalacja: Library Manager → "Adafruit PN532"
+
+3. Adafruit SSD1306
+   - Autor: Adafruit
+   - GitHub: https://github.com/adafruit/Adafruit_SSD1306
+   - Opis: Obsługa wyświetlacza OLED SSD1306
+   - Instalacja: Library Manager → "Adafruit SSD1306"
+
+4. Adafruit GFX Library
+   - Autor: Adafruit
+   - GitHub: https://github.com/adafruit/Adafruit-GFX-Library
+   - Opis: Grafika dla wyświetlaczy (wymagana przez SSD1306)
+   - Instalacja: Library Manager → "Adafruit GFX Library"
+
+5. ArduinoJson
+   - Autor: Benoit Blanchon
+   - GitHub: https://github.com/bblanchon/ArduinoJson
+   - Opis: Parsowanie i tworzenie JSON
+   - Wersja: 6.x (ważne!)
+   - Instalacja: Library Manager → "ArduinoJson" (wybierz wersję 6.x)
+
+6. ESPAsyncWebServer
+   - Autor: me-no-dev
+   - GitHub: https://github.com/me-no-dev/ESPAsyncWebServer
+   - Opis: Asynchroniczny serwer HTTP dla ESP32
+   - Instalacja: Ręczna (patrz poniżej)
+
+7. AsyncTCP
+   - Autor: me-no-dev
+   - GitHub: https://github.com/me-no-dev/AsyncTCP
+   - Opis: Asynchroniczne TCP dla ESP32 (wymagane przez ESPAsyncWebServer)
+   - Instalacja: Ręczna (patrz poniżej)
+
+8. SimpleFTPServer
+   - Autor: Renzo Mischianti
+   - GitHub: https://github.com/xreef/SimpleFTPServer
+   - Opis: Prosty serwer FTP dla ESP32
+   - Instalacja: Library Manager → "SimpleFTPServer"
+
+## Biblioteki wbudowane (nie trzeba instalować):
+
+- SD - obsługa karty SD
+- SPI - komunikacja SPI
+- Wire - komunikacja I2C
+- WiFi - obsługa WiFi w ESP32
+- Preferences - NVRAM storage
+- Update - OTA updates
+- FS - system plików
+
+## Instalacja ręczna bibliotek (ESPAsyncWebServer i AsyncTCP):
+
+### Arduino IDE:
+
+1. Pobierz AsyncTCP:
+   - https://github.com/me-no-dev/AsyncTCP/archive/master.zip
+   - Rozpakuj do folderu `Arduino/libraries/AsyncTCP`
+
+2. Pobierz ESPAsyncWebServer:
+   - https://github.com/me-no-dev/ESPAsyncWebServer/archive/master.zip
+   - Rozpakuj do folderu `Arduino/libraries/ESPAsyncWebServer`
+
+3. Zrestartuj Arduino IDE
+
+### PlatformIO:
+
+Dodaj do `platformio.ini`:
+
+```ini
+lib_deps = 
+    ESP8266Audio
+    adafruit/Adafruit PN532
+    adafruit/Adafruit SSD1306
+    adafruit/Adafruit GFX Library
+    bblanchon/ArduinoJson @ ^6.21.3
+    https://github.com/me-no-dev/ESPAsyncWebServer
+    https://github.com/me-no-dev/AsyncTCP
+    https://github.com/xreef/SimpleFTPServer
+```
+
+## Weryfikacja instalacji:
+
+Po zainstalowaniu wszystkich bibliotek, otwórz Arduino IDE i sprawdź:
+- Sketch → Include Library → powinny być widoczne wszystkie biblioteki
+- Spróbuj skompilować projekt BajkoGrajek.ino
+
+## Uwagi:
+
+- **ArduinoJson**: Koniecznie wersja 6.x! Wersja 7.x ma niezgodne API.
+- **ESP8266Audio**: Wymaga doinstalowania zależności (automatyczne w Library Manager).
+- **ESPAsyncWebServer**: Nie jest dostępny w Library Manager, wymagana instalacja ręczna.
+- **AsyncTCP**: Nie jest dostępny w Library Manager, wymagana instalacja ręczna.
+
+## Rozmiar bibliotek (przybliżony):
+
+- ESP8266Audio: ~500 KB
+- Adafruit PN532: ~50 KB
+- Adafruit SSD1306: ~30 KB
+- Adafruit GFX: ~100 KB
+- ArduinoJson: ~50 KB
+- ESPAsyncWebServer: ~100 KB
+- AsyncTCP: ~30 KB
+- SimpleFTPServer: ~50 KB
+
+**Całkowity rozmiar: ~900 KB**
+
+## Wymagania sprzętowe:
+
+- ESP32 z minimum 4MB flash
+- Minimum 320KB RAM
+- WiFi
+
+## Wsparcie:
+
+W razie problemów z instalacją bibliotek:
+1. Sprawdź wersje bibliotek
+2. Zaktualizuj Arduino IDE do najnowszej wersji
+3. Zaktualizuj ESP32 board package
+4. Sprawdź logi kompilacji pod kątem błędów
+
+---
+
+Ostatnia aktualizacja: 2025
